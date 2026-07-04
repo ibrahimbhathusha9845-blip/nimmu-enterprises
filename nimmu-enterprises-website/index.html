@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nimmu Enterprises | Furniture & Electronics, Tiruppur</title>
+<style>
+  :root{
+    --fk-blue:#2874f0;
+    --fk-blue-dark:#1a4fb4;
+    --fk-yellow:#ffe500;
+    --fk-yellow-dark:#f5c518;
+    --fk-bg:#f1f3f6;
+    --fk-text:#212121;
+    --fk-grey:#878787;
+    --fk-green:#388e3c;
+    --card-radius:2px;
+    --font-main: 'Segoe UI', Roboto, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--font-main);background:var(--fk-bg);color:var(--fk-text);}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;margin:0;padding:0;}
+
+  /* Top strip */
+  .top-strip{
+    background:var(--fk-blue-dark);
+    color:#fff;
+    font-size:12px;
+    text-align:center;
+    padding:5px 10px;
+    letter-spacing:.3px;
+  }
+  .top-strip b{color:var(--fk-yellow);}
+
+  /* Header */
+  header{
+    background:var(--fk-blue);
+    padding:10px 20px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 1px 3px rgba(0,0,0,.2);
+  }
+  .logo-block{display:flex;flex-direction:column;line-height:1;color:#fff;min-width:140px;}
+  .logo-block .name{font-size:20px;font-weight:700;font-style:italic;}
+  .logo-block .tag{font-size:11px;color:#ffe500;font-style:italic;}
+  .search-wrap{flex:1;position:relative;max-width:700px;}
+  .search-wrap input{
+    width:100%;
+    border:none;
+    border-radius:2px;
+    padding:9px 40px 9px 12px;
+    font-size:14px;
+    outline:none;
+  }
+  .search-wrap .icon{
+    position:absolute;right:10px;top:50%;transform:translateY(-50%);
+    color:var(--fk-blue);font-size:16px;
+  }
+  .header-actions{display:flex;align-items:center;gap:28px;color:#fff;font-weight:600;font-size:14px;}
+  .header-actions .call-btn{
+    background:#fff;color:var(--fk-blue);padding:8px 18px;border-radius:2px;font-weight:700;
+    display:flex;align-items:center;gap:6px;white-space:nowrap;
+  }
+  .header-actions .item{display:flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;}
+
+  /* Category nav */
+  .cat-nav{
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    gap:38px;
+    padding:14px 10px;
+    overflow-x:auto;
+    box-shadow:0 1px 2px rgba(0,0,0,.1);
+    position:sticky; top:56px; z-index:99;
+  }
+  .cat-nav a{
+    font-size:13px;font-weight:600;color:var(--fk-text);
+    display:flex;flex-direction:column;align-items:center;gap:6px;white-space:nowrap;
+  }
+  .cat-nav .emoji{font-size:24px;}
+  .cat-nav a:hover{color:var(--fk-blue);}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(120deg,#2874f0,#1a4fb4);
+    color:#fff;
+    padding:36px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    text-align:left;
+  }
+  .hero .hero-text{max-width:480px;}
+  .hero h1{font-size:32px;margin:0 0 10px;font-weight:800;}
+  .hero p{margin:0 0 18px;color:#dbe7ff;font-size:15px;}
+  .hero .badge{
+    display:inline-block;background:var(--fk-yellow);color:#222;
+    padding:8px 16px;border-radius:2px;font-weight:700;font-size:14px;
+  }
+  .hero img{
+    width:340px;max-width:90vw;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.35);
+  }
+
+  /* brand strip */
+  .brand-strip{
+    background:#fff;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+    padding:16px 10px;font-weight:700;color:var(--fk-grey);letter-spacing:.5px;font-size:14px;
+    border-bottom:8px solid var(--fk-bg);
+  }
+  .brand-strip span{opacity:.85;}
+
+  /* Section */
+  .section{
+    background:#fff;margin:14px auto;max-width:1280px;padding:18px 20px 26px;
+    border-radius:var(--card-radius);
+  }
+  .section-head{
+    display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;
+    border-bottom:1px solid #eee;padding-bottom:10px;
+  }
+  .section-head h2{font-size:20px;margin:0;}
+  .section-head span{font-size:12px;color:var(--fk-grey);}
+  .section-head a.view-all{color:var(--fk-blue);font-weight:700;font-size:13px;}
+
+  .grid{
+    display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:16px;
+  }
+  .banner-card{
+    grid-row:span 2;position:relative;border-radius:4px;overflow:hidden;border:1px solid #f0f0f0;
+  }
+  .banner-card img{width:100%;height:100%;object-fit:cover;display:block;}
+  .banner-card .overlay{
+    position:absolute;left:0;bottom:0;right:0;
+    background:linear-gradient(to top, rgba(0,0,0,.65), transparent);
+    color:#fff;padding:16px 12px 10px;
+  }
+  .banner-card .overlay h3{margin:0 0 4px;font-size:16px;}
+  .banner-card .overlay p{margin:0;font-size:12px;color:#ffe500;font-weight:700;}
+
+  .product-card{
+    border:1px solid #f0f0f0;border-radius:4px;padding:14px 12px;background:#fff;
+    display:flex;flex-direction:column;gap:8px;transition:box-shadow .15s;
+  }
+  .product-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.12);}
+  .product-card .thumb{
+    height:110px;display:flex;align-items:center;justify-content:center;font-size:38px;
+    background:var(--fk-bg);border-radius:4px;
+  }
+  .product-card h4{margin:2px 0 0;font-size:14px;font-weight:600;}
+  .product-card .brand{font-size:12px;color:var(--fk-grey);}
+  .product-card .rating{
+    display:inline-flex;align-items:center;gap:4px;background:var(--fk-green);color:#fff;
+    font-size:11px;font-weight:700;padding:2px 6px;border-radius:2px;width:fit-content;
+  }
+  .product-card .price-row{display:flex;align-items:baseline;gap:8px;}
+  .product-card .price{font-size:16px;font-weight:700;}
+  .product-card .mrp{font-size:12px;color:var(--fk-grey);text-decoration:line-through;}
+  .product-card .off{color:var(--fk-green);font-size:12px;font-weight:700;}
+  .product-card .emi{font-size:11px;color:var(--fk-grey);}
+  .enquire-btn{
+    margin-top:4px;background:var(--fk-blue);color:#fff;border:none;padding:8px 0;
+    border-radius:2px;font-weight:700;font-size:13px;cursor:pointer;
+  }
+  .enquire-btn:hover{background:var(--fk-blue-dark);}
+
+  /* Store photo section */
+  .store-section{
+    display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;
+  }
+  .store-section img{width:100%;border-radius:6px;border:1px solid #eee;}
+  .store-info h2{font-size:22px;margin-top:0;}
+  .store-info p{color:#444;font-size:14px;line-height:1.7;}
+  .info-line{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;font-size:14px;}
+  .info-line .ic{
+    width:34px;height:34px;flex:none;border-radius:50%;background:var(--fk-blue);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:16px;
+  }
+  .info-line b{display:block;font-size:14px;}
+  .info-line span{color:#555;font-size:13px;}
+  .cta-row{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;}
+  .cta{
+    padding:11px 22px;border-radius:3px;font-weight:700;font-size:14px;display:inline-flex;
+    align-items:center;gap:8px;
+  }
+  .cta.primary{background:var(--fk-blue);color:#fff;}
+  .cta.whatsapp{background:#25d366;color:#fff;}
+
+  footer{
+    background:#172337;color:#c9d2e0;padding:36px 20px 90px;margin-top:20px;
+  }
+  .footer-grid{
+    max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  }
+  .footer-grid h5{color:#fff;font-size:13px;margin:0 0 14px;text-transform:uppercase;letter-spacing:.5px;}
+  .footer-grid li{font-size:13px;margin-bottom:9px;color:#a9b4c9;}
+  .footer-bottom{
+    text-align:center;font-size:12px;color:#7c8aa3;margin-top:30px;border-top:1px solid #2a3854;
+    padding-top:16px;max-width:1280px;margin-left:auto;margin-right:auto;
+  }
+
+  /* floating buttons */
+  .floating{
+    position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px;z-index:200;
+  }
+  .floating a{
+    width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:24px;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.3);
+  }
+  .floating .wa{background:#25d366;}
+  .floating .call{background:var(--fk-blue);}
+
+  /* mobile bottom nav (flipkart-app style) */
+  .mobile-nav{
+    display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;
+    justify-content:space-around;padding:8px 0;z-index:150;box-shadow:0 -2px 8px rgba(0,0,0,.08);
+  }
+  .mobile-nav a{font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px;color:#555;}
+  .mobile-nav .icon{font-size:19px;}
+
+  @media(max-width:960px){
+    .header-actions .item{display:none;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .banner-card{grid-row:span 1;height:180px;}
+    .store-section{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .floating{display:none;}
+    .mobile-nav{display:flex;}
+    body{padding-bottom:56px;}
+  }
+  @media(max-width:600px){
+    .hero{flex-direction:column;text-align:center;}
+    .hero .hero-text{max-width:100%;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top-strip">📍 Koothampalayam, Tiruppur &nbsp; | &nbsp; <b>EMI Available</b> &nbsp; | &nbsp; Call us: <b>9486861199</b></div>
+
+<header>
+  <div class="logo-block">
+    <span class="name">Nimmu Enterprises</span>
+    <span class="tag">Furniture &amp; Electronics</span>
+  </div>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search for refrigerators, TVs, washing machines, furniture...">
+    <span class="icon">🔍</span>
+  </div>
+  <div class="header-actions">
+    <span class="item">👤 Login</span>
+    <span class="item">♡ Wishlist</span>
+    <span class="item">🛒 Cart</span>
+    <a class="call-btn" href="tel:+919486861199">📞 9486861199</a>
+  </div>
+</header>
+
+<nav class="cat-nav">
+  <a href="#refrigerators"><span class="emoji">🧊</span>Refrigerators</a>
+  <a href="#washing"><span class="emoji">🌀</span>Washing Machines</a>
+  <a href="#tvs"><span class="emoji">📺</span>LED &amp; Smart TVs</a>
+  <a href="#appliances"><span class="emoji">🔌</span>Home Appliances</a>
+  <a href="#furniture"><span class="emoji">🪑</span>Furniture</a>
+  <a href="#visit"><span class="emoji">📍</span>Visit Store</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <span class="badge">TIRUPPUR'S TRUSTED STORE SINCE YEARS</span>
+    <h1>Home &amp; Kitchen Appliances,<br>TVs &amp; Furniture — All Under One Roof</h1>
+    <p>LG • Whirlpool • Godrey • Panasonic • Crompton • V-Guard • Vidiem &amp; more, at showroom prices with EMI options.</p>
+    <div class="cta-row">
+      <a class="cta primary" href="tel:+919486861199">📞 Call Now</a>
+      <a class="cta whatsapp" href="https://wa.me/919486861199" target="_blank">💬 WhatsApp Us</a>
+    </div>
+  </div>
+  <img src="images/unnamed.webp" alt="Nimmu Enterprises Storefront">
+</section>
+
+<div class="brand-strip">
+  <span>LG</span><span>Whirlpool</span><span>Godrej</span><span>Panasonic</span>
+  <span>Crompton</span><span>V-Guard</span><span>Vidiem</span><span>Victor</span><span>Yara</span>
+</div>
+
+<!-- Refrigerators -->
+<section class="section" id="refrigerators">
+  <div class="section-head">
+    <h2>Refrigerators</h2>
+    <span>Single Door &amp; Double Door | Floral Designer Finishes</span>
+  </div>
+  <div class="grid">
+    <div class="banner-card">
+      <img src="images/FRIDGE.webp" alt="Refrigerators at Nimmu Enterprises">
+      <div class="overlay"><h3>LG &amp; Whirlpool Refrigerators</h3><p>Stunningly Stylish Designs</p></div>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🧊</div>
+      <h4>LG Single Door Refrigerator</h4>
+      <span class="brand">Smart Inverter Compressor</span>
+      <span class="rating">4.3 ★</span>
+      <span class="emi">10-Year Warranty on Compressor</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🧊</div>
+      <h4>LG Floral Design Refrigerator</h4>
+      <span class="brand">Designer Décor Finish</span>
+      <span class="rating">4.4 ★</span>
+      <span class="emi">Available in 5 finishes</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🧊</div>
+      <h4>Whirlpool Double Door Refrigerator</h4>
+      <span class="brand">New Vibrant Designs 2024</span>
+      <span class="rating">4.2 ★</span>
+      <span class="emi">Frost Free | Energy Saving</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+  </div>
+</section>
+
+<!-- Washing Machines -->
+<section class="section" id="washing">
+  <div class="section-head">
+    <h2>Washing Machines</h2>
+    <span>Semi-Automatic &amp; Fully Automatic</span>
+  </div>
+  <div class="grid">
+    <div class="banner-card">
+      <img src="images/washing_machine.webp" alt="Washing machines at Nimmu Enterprises">
+      <div class="overlay"><h3>Semi &amp; Fully Automatic</h3><p>Godrej • LG • Panasonic</p></div>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🌀</div>
+      <h4>Godrej Semi-Automatic Washer</h4>
+      <span class="brand">No.1 in Japan Technology</span>
+      <span class="rating">4.1 ★</span>
+      <span class="emi">2-in-1 Wash &amp; Dry Tub</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🌀</div>
+      <h4>LG Semi-Automatic Washer</h4>
+      <span class="brand">Roller Jet Pulsator</span>
+      <span class="rating">4.3 ★</span>
+      <span class="emi">10-Year Motor Warranty</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🌀</div>
+      <h4>Panasonic Twin Tub Washer</h4>
+      <span class="brand">Compact &amp; Durable</span>
+      <span class="rating">4.0 ★</span>
+      <span class="emi">Ideal for Small Families</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+  </div>
+</section>
+
+<!-- TVs -->
+<section class="section" id="tvs">
+  <div class="section-head">
+    <h2>LED &amp; Smart TVs</h2>
+    <span>24" to 55" | LG Smart TV &amp; Yara</span>
+  </div>
+  <div class="grid">
+    <div class="banner-card">
+      <img src="images/tvs.webp" alt="LED and Smart TVs on display">
+      <div class="overlay"><h3>LG Smart TV Zone</h3><p>Live Demo Available In-Store</p></div>
+    </div>
+    <div class="product-card">
+      <div class="thumb">📺</div>
+      <h4>LG UHD Smart TV</h4>
+      <span class="brand">webOS | Voice Remote</span>
+      <span class="rating">4.5 ★</span>
+      <span class="emi">Available: 43", 50", 55"</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">📺</div>
+      <h4>Yara Smart LED TV</h4>
+      <span class="brand">HD Ready | Slim Bezel</span>
+      <span class="rating">4.0 ★</span>
+      <span class="emi">Available: 24", 32"</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">📦</div>
+      <img src="images/LED_TV.webp" alt="32 inch smart TV boxes" style="width:100%;height:110px;object-fit:cover;border-radius:4px;">
+      <h4>32" Smart TV Combo Stock</h4>
+      <span class="brand">HDMI &amp; USB Ports</span>
+      <span class="rating">4.1 ★</span>
+      <span class="emi">Bulk stock ready for delivery</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+  </div>
+</section>
+
+<!-- Home Appliances -->
+<section class="section" id="appliances">
+  <div class="section-head">
+    <h2>Home &amp; Kitchen Appliances</h2>
+    <span>Mixer Grinders • Fans • Water Heaters • Cookware</span>
+  </div>
+  <div class="grid">
+    <div class="banner-card">
+      <img src="images/appliances.webp" alt="Home appliances section">
+      <div class="overlay"><h3>Mixers, Fans &amp; More</h3><p>Vidiem • Victor • Crompton • V-Guard</p></div>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🥤</div>
+      <h4>Vidiem / Victor Mixer Grinder</h4>
+      <span class="brand">The Chef's Choice, 500W-750W</span>
+      <span class="rating">4.2 ★</span>
+      <span class="emi">3-Jar Sets Available</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🌬️</div>
+      <h4>Crompton Ceiling Fans</h4>
+      <span class="brand">High Speed | 1 Star Rated</span>
+      <span class="rating">4.3 ★</span>
+      <span class="emi">Multiple colour options</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🚿</div>
+      <h4>V-Guard Water Heaters</h4>
+      <span class="brand">Instant &amp; Storage Geysers</span>
+      <span class="rating">4.4 ★</span>
+      <span class="emi">Also: Pedestal Fans, Voltage Stabilizers</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+  </div>
+</section>
+
+<!-- Furniture -->
+<section class="section" id="furniture">
+  <div class="section-head">
+    <h2>Furniture</h2>
+    <span>Plastic &amp; Cushioned Chairs, Tables for Home &amp; Commercial Use</span>
+  </div>
+  <div class="grid">
+    <div class="product-card">
+      <div class="thumb">🪑</div>
+      <h4>Cushioned Plastic Chairs</h4>
+      <span class="brand">Premium Finish</span>
+      <span class="rating">4.1 ★</span>
+      <span class="emi">Bulk order discounts available</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🪑</div>
+      <h4>Armless Plastic Chairs</h4>
+      <span class="brand">Stackable &amp; Durable</span>
+      <span class="rating">4.0 ★</span>
+      <span class="emi">Ideal for functions &amp; events</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🪑</div>
+      <h4>Study &amp; Dining Tables</h4>
+      <span class="brand">Wood &amp; Laminate Finish</span>
+      <span class="rating">4.2 ★</span>
+      <span class="emi">Custom sizes on request</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+    <div class="product-card">
+      <div class="thumb">🪞</div>
+      <h4>Home &amp; Office Furniture</h4>
+      <span class="brand">Wide Range In-Store</span>
+      <span class="rating">4.1 ★</span>
+      <span class="emi">Visit store to see full range</span>
+      <button class="enquire-btn" onclick="callStore()">Enquire Price</button>
+    </div>
+  </div>
+</section>
+
+<!-- Visit store -->
+<section class="section" id="visit">
+  <div class="store-section">
+    <img src="images/unnamed.webp" alt="Nimmu Enterprises store front, Koothampalayam, Tiruppur">
+    <div class="store-info">
+      <h2>Visit Our Store</h2>
+      <p>Come see the full range of refrigerators, washing machines, smart TVs, home appliances and furniture on display, with our team ready to help you choose the right product for your home.</p>
+      <div class="info-line">
+        <div class="ic">📍</div>
+        <div><b>Address</b><span>87/8H A1, A2 Koothampalayam Pirivu, P N Road, Tiruppur - 2</span></div>
+      </div>
+      <div class="info-line">
+        <div class="ic">📞</div>
+        <div><b>Call / WhatsApp</b><span>9486861199</span></div>
+      </div>
+      <div class="info-line">
+        <div class="ic">🕘</div>
+        <div><b>Store Hours</b><span>Open all days, 9:00 AM – 9:00 PM</span></div>
+      </div>
+      <div class="cta-row">
+        <a class="cta primary" href="tel:+919486861199">📞 Call Store</a>
+        <a class="cta whatsapp" href="https://wa.me/919486861199" target="_blank">💬 Chat on WhatsApp</a>
+        <a class="cta primary" style="background:#444" href="https://www.google.com/maps/search/Nimmu+Enterprises+Koothampalayam+Tiruppur" target="_blank">🗺️ Get Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h5>Nimmu Enterprises</h5>
+      <li>Furniture &amp; Electronics Showroom</li>
+      <li>Koothampalayam, Tiruppur</li>
+      <li>Tamil Nadu, India</li>
+    </div>
+    <div>
+      <h5>Categories</h5>
+      <li><a href="#refrigerators">Refrigerators</a></li>
+      <li><a href="#washing">Washing Machines</a></li>
+      <li><a href="#tvs">LED &amp; Smart TVs</a></li>
+      <li><a href="#appliances">Home Appliances</a></li>
+      <li><a href="#furniture">Furniture</a></li>
+    </div>
+    <div>
+      <h5>Customer Support</h5>
+      <li>📞 <a href="tel:+919486861199">9486861199</a></li>
+      <li>💬 <a href="https://wa.me/919486861199">WhatsApp Support</a></li>
+      <li>EMI &amp; Exchange Available</li>
+    </div>
+    <div>
+      <h5>Store Address</h5>
+      <li>87/8H A1, A2 Koothampalayam Pirivu,</li>
+      <li>P N Road, Tiruppur - 2</li>
+      <li>Open all days, 9 AM – 9 PM</li>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Nimmu Enterprises. All prices &amp; availability subject to confirmation in-store.</div>
+</footer>
+
+<div class="floating">
+  <a class="wa" href="https://wa.me/919486861199" target="_blank" title="WhatsApp">💬</a>
+  <a class="call" href="tel:+919486861199" title="Call Now">📞</a>
+</div>
+
+<nav class="mobile-nav">
+  <a href="#"><span class="icon">🏠</span>Home</a>
+  <a href="#refrigerators"><span class="icon">🧊</span>Categories</a>
+  <a href="tel:+919486861199"><span class="icon">📞</span>Call</a>
+  <a href="https://wa.me/919486861199"><span class="icon">💬</span>WhatsApp</a>
+  <a href="#visit"><span class="icon">📍</span>Store</a>
+</nav>
+
+<script>
+  function callStore(){
+    window.location.href = "tel:+919486861199";
+  }
+  document.getElementById('searchInput').addEventListener('keyup', function(e){
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll('.product-card, .banner-card').forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(term) ? '' : (term === '' ? '' : 'none');
+    });
+  });
+</script>
+
+</body>
+</html>
